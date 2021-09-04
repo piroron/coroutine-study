@@ -9,8 +9,9 @@ import io.ktor.locations.*
 import com.fasterxml.jackson.databind.*
 import io.ktor.jackson.*
 import io.ktor.features.*
-import kotlin.test.*
 import io.ktor.server.testing.*
+import org.junit.Assert.assertEquals
+import org.junit.Test
 
 class ApplicationTest {
     @Test

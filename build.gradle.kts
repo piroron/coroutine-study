@@ -1,4 +1,6 @@
-val ktorVersion: String = "1.5.1"
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+val ktorVersion: String = "1.6.3"
 val kotlinVersion: String = "1.4.21"
 val logbackVersion: String = "1.2.1"
 
@@ -10,6 +12,10 @@ plugins {
 group = "com.example"
 version = "0.0.1"
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+}
+
 application {
     mainClassName = "io.ktor.server.netty.EngineMain"
 }
@@ -18,6 +24,7 @@ repositories {
     mavenLocal()
     jcenter()
     maven { url = uri("https://kotlin.bintray.com/ktor") }
+    mavenCentral()
 }
 
 dependencies {
@@ -35,3 +42,10 @@ kotlin.sourceSets["test"].kotlin.srcDirs("test")
 
 sourceSets["main"].resources.srcDirs("resources")
 sourceSets["test"].resources.srcDirs("testresources")
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xjsr305=strict", "-Xopt-in=kotlin.RequiresOptIn")
+        jvmTarget = "1.8"
+    }
+}
