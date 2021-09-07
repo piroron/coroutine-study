@@ -2,6 +2,7 @@
 
 package com.example
 
+import com.example.controller.waitController
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.request.*
@@ -45,6 +46,8 @@ fun Application.module(testing: Boolean = false) {
         get("/json/jackson") {
             call.respond(mapOf("hello" to "world"))
         }
+
+        waitController()
     }
 }
 
